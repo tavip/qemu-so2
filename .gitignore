@@ -1,6 +1,8 @@
-boot.iso
-busybox
 disk1.img
 disk2.img
+bzImage
+initrd.cpio
+initrd.cpio.gz
+vmlinux
 linux-3.13/
 for-lab-image/
