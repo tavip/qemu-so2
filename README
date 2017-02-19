@@ -30,6 +30,16 @@ connect to it:
 
 minicom -D /dev/pts/20
 
+
+== Disable SDL ==
+
+Run as
+
+QEMU_DISPLAY=none make
+
+to disable the SDL mode. In this case you can connect to the VM via
+the pty port described above.
+
 == To rebuild busybox ==
 
 Grab busybox_config, stick it in a busybox config, run

@@ -1,3 +1,5 @@
+QEMU_DISPLAY ?= sdl
+
 run: initrd.cpio.gz bzImage pipe1.in pipe1.out pipe2.in pipe2.out disk1.img disk2.img tap0 tap1 nttcp-run
 	qemu-system-i386 -initrd $< -kernel bzImage \
 		-device virtio-serial \
@@ -7,7 +9,7 @@ run: initrd.cpio.gz bzImage pipe1.in pipe1.out pipe2.in pipe2.out disk1.img disk
 		-net nic,model=virtio,vlan=0 -net tap,ifname=tap0,vlan=0,script=no,downscript=no \
 		-net nic,model=i82559er,vlan=1 -net tap,ifname=tap1,vlan=1,script=no,downscript=no \
 		--append "root=/dev/ram console=tty0 console=hvc0" \
-		-s
+		--display $(QEMU_DISPLAY) -s
 
 fsimg/bin/busybox:
 	@echo "Please install statically compiled busybox image to fsimg/bin/busybox"
