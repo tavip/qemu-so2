@@ -18,6 +18,18 @@ make setup-bzImage
 to download the kernel, build bzImage and create the required link.
 
 
+== Consoles ==
+
+There are two consoles activated: one in the default SDL display an
+one spawned as a pty. Looks for messages like:
+
+char device redirected to /dev/pts/20 (label virtiocon0)
+
+to determine the pty path and then you can use minicom or screen to
+connect to it:
+
+minicom -D /dev/pts/20
+
 == To rebuild busybox ==
 
 Grab busybox_config, stick it in a busybox config, run
