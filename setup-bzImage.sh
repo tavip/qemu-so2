@@ -4,6 +4,7 @@ set -e
 
 SO2_KERNEL=linux-4.9.11
 SO2_KERNEL_PATH=../$SO2_KERNEL
+HERE=$PWD
 
 if ! [ -d $SO2_KERNEL_PATH ]; then
     if ! [ -e $SO2_KERNEL.tar.xz ]; then
@@ -19,6 +20,8 @@ fi
 
 if ! [ -e $SO2_KERNEL_PATH/arch/x86/boot/bzImage ]; then
     make -C $SO2_KERNEL_PATH -j$(grep processor /proc/cpuinfo | wc -l)
+    make -C $SO2_KERNEL_PATH modules
+    INSTALL_MOD_PATH=$HERE/fsimg make -C $SO2_KERNEL_PATH modules_install
 fi
 
 if ! [ -e bzImage ]; then
