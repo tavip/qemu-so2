@@ -4,6 +4,7 @@ run: initrd.cpio.gz bzImage pipe1.in pipe1.out pipe2.in pipe2.out disk1.img disk
 	qemu-system-i386 -initrd $< -kernel bzImage \
 		-device virtio-serial \
 		-chardev pty,id=virtiocon0 -device virtconsole,chardev=virtiocon0 \
+		-serial pipe:pipe1 -serial pipe:pipe2 \
 		-drive file=disk1.img,if=virtio,format=raw \
 		-drive file=disk2.img,if=virtio,format=raw \
 		-net nic,model=virtio,vlan=0 -net tap,ifname=tap0,vlan=0,script=no,downscript=no \
