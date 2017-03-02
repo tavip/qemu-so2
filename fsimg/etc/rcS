@@ -19,5 +19,7 @@ ip a a dev eth0 172.20.0.2/24
 ip l set dev eth0 up
 sleep 1
 
-mount
+/sbin/syslogd
+dropbear -RB
+
 

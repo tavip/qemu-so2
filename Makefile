@@ -24,7 +24,7 @@ setup-bzImage:
 	./setup-bzImage.sh
 
 initrd.cpio: $(shell find fsimg) fsimg/bin/busybox
-	cd fsimg && find . | cpio -o -H newc > ../$@
+	cd fsimg && find . ! -name .gitignore | cpio -o -H newc > ../$@
 
 initrd.cpio.gz: initrd.cpio
 	gzip -k -f $<
